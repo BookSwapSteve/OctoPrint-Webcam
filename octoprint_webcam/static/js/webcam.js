@@ -46,11 +46,28 @@ $(function() {
             if (self.webcamDisableTimeout != undefined) {
                 clearTimeout(self.webcamDisableTimeout);
             }
+
             var webcamImage = $("#webcam_image_main");
-            var currentSrc = webcamImage.attr("src");
-            if (currentSrc === undefined || currentSrc.trim() == "") {
-                var newSrc = CONFIG_WEBCAM_STREAM;
-                if (CONFIG_WEBCAM_STREAM.lastIndexOf("?") > -1) {
+            var mainSrc = webcamImage.attr("src");
+            if (mainSrc === undefined || mainSrc.trim() == "") {
+                var newSrc = self.settings.plugins.webcam.streamUrl
+                if (newSrc.lastIndexOf("?") > -1) {
+                    newSrc += "&";
+                } else {
+                    newSrc += "?";
+                }
+                newSrc += new Date().getTime();
+
+                self.updateRotatorWidth();
+                webcamImage.attr("src", newSrc);
+            }
+
+			var webcamImageRear = $("#webcam_image_rear");
+            var rearSrc = webcamImage.attr("src");
+            if (rearSrc=== undefined || rearSrc.trim() == "") {
+				// TODO: Rear src
+                var newSrc = self.settings.plugins.webcam.streamUrl
+                if (newSrc.lastIndexOf("?") > -1) {
                     newSrc += "&";
                 } else {
                     newSrc += "?";
@@ -84,13 +101,5 @@ $(function() {
         WebcamViewModel,
         ["settingsViewModel", "tabTracking"],
         "#tab_plugin_webcam"
-
-		// TODO:  CONFIG_WEBCAM_STREAM
-
-        // e.g. loginStateViewModel, settingsViewModel, ...
-        [ /* "loginStateViewModel", "settingsViewModel" */ ],
-
-        // e.g. #settings_plugin_webcam, #tab_plugin_webcam, ...
-        [ /* ... */ ]
     ]);
 });
