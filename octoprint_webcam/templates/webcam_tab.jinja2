@@ -1,11 +1,11 @@
-<iframe data-bind="attr: {src: settings.settings.plugins.webcam.streamUrl}" style="width: 100%; height: 600px; border: 1px solid #808080"></iframe>
-
+<h3 data-bind="text: settings.settings.plugins.webcam.mainCaption"></h3>
 <div id="webcam_container_main" tabindex="0">
 	<div id="webcam_rotator" data-bind="css: { rotate90: settings.webcam_rotate90() }">
 	    <img id="webcam_image_main" data-bind="css: { flipH: settings.webcam_flipH(), flipV: settings.webcam_flipV() }">
 	</div>
 </div>
 
+<h3 data-bind="text: settings.settings.plugins.webcam.rearCaption"></h3>
 <div id="webcam_container_rear" tabindex="0">
 	<div id="webcam_rotator" data-bind="css: { rotate90: settings.webcam_rotate90() }">
 	    <img id="webcam_image_rear" data-bind="css: { flipH: settings.webcam_flipH(), flipV: settings.webcam_flipV() }">
