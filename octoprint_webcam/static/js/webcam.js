@@ -47,15 +47,15 @@ $(function() {
                 clearTimeout(self.webcamDisableTimeout);
             }
 
-			self._configureMainWebcam();	
-			self._configureRearWebcam();
+			var webcamSettings = self.settings.settings.plugins.webcam;
+			self._configureWebcam("#webcam_image_main", webcamSettings.mainStreamUrl());	
+			self._configureWebcam("#webcam_image_rear", webcamSettings.rearStreamUrl());
         };
 
-		self._configureMainWebcam = function() {
-			var webcamImage = $("#webcam_image_main");
-            var mainSrc = webcamImage.attr("src");
-            if (mainSrc === undefined || mainSrc.trim() == "") {
-                var newSrc = self.settings.settings.plugins.webcam.mainStreamUrl();
+		self._configureWebcam = function(imageSelector, newSrc) {
+			var webcamImage = $(imageSelector);
+            var currentSrc = webcamImage.attr("src");
+            if (currentSrc === undefined || currentSrc.trim() == "") {
                 if (newSrc.lastIndexOf("?") > -1) {
                     newSrc += "&";
                 } else {
@@ -63,28 +63,30 @@ $(function() {
                 }
                 newSrc += new Date().getTime();
 
-                self.updateRotatorWidth();
+                self.updateRotatorWidth(imageSelector);
                 webcamImage.attr("src", newSrc);
             }
 		};
 
-		self._configureRearWebcam= function() {
-			var webcamImageRear = $("#webcam_image_rear");
-            var rearSrc = webcamImage.attr("src");
-            if (rearSrc=== undefined || rearSrc.trim() == "") {
-				// TODO: Rear src
-                var newSrc = self.settings.settings.plugins.webcam.rearStreamUrl();
-                if (newSrc.lastIndexOf("?") > -1) {
-                    newSrc += "&";
+		 self.updateRotatorWidth = function(imageSelector) {
+            var webcamImage = $(imageSelector);
+			return;
+
+			// TODO...
+            if (self.settings.webcam_rotate90()) {
+                if (webcamImage.width() > 0) {
+                    $("#webcam_rotator").css("height", webcamImage.width());
                 } else {
-                    newSrc += "?";
+                    webcamImage.off("load.rotator");
+                    webcamImage.on("load.rotator", function() {
+                        $("#webcam_rotator").css("height", webcamImage.width());
+                        webcamImage.off("load.rotator");
+                    });
                 }
-                newSrc += new Date().getTime();
-
-                self.updateRotatorWidth();
-                webcamImage.attr("src", newSrc);
+            } else {
+                $("#webcam_rotator").css("height", "");
             }
-		};
+        }
 
         self.onTabChange = function (current, previous) {
             if (current == "#tab_plugin_webcam") {
