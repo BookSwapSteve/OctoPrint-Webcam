@@ -13,15 +13,16 @@ class WebcamPlugin(octoprint.plugin.StartupPlugin,
 	def get_settings_defaults(self):
 		return dict(
 			url="https://en.wikipedia.org/wiki/Hello_world", #remove
-			streamUrl="/webcam/?action=stream",
-			caption="Filament Webcam"
+			mainStreamUrl="/webcam/?action=stream",
+			rearStreamUrl="/rearwebcam/?action=stream",
+			caption="Webcam"
 			)
 
 	def get_template_configs(self):
 		return [
 			dict(type="navbar", custom_bindings=False),
 			dict(type="settings", custom_bindings=False),
-			dict(type="tab", name="Printer Webcam")
+			dict(type="tab", name="Webcam")
 			#dict(type="tab", name=self._settings.get(["caption"])
 		]
 

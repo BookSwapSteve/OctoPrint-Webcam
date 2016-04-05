@@ -47,10 +47,15 @@ $(function() {
                 clearTimeout(self.webcamDisableTimeout);
             }
 
-            var webcamImage = $("#webcam_image_main");
+			self._configureMainWebcam();	
+			self._configureRearWebcam();
+        };
+
+		self._configureMainWebcam() {
+			var webcamImage = $("#webcam_image_main");
             var mainSrc = webcamImage.attr("src");
             if (mainSrc === undefined || mainSrc.trim() == "") {
-                var newSrc = self.settings.plugins.webcam.streamUrl
+                var newSrc = self.settings.settings.plugins.webcam.mainStreamUrl
                 if (newSrc.lastIndexOf("?") > -1) {
                     newSrc += "&";
                 } else {
@@ -61,12 +66,14 @@ $(function() {
                 self.updateRotatorWidth();
                 webcamImage.attr("src", newSrc);
             }
+		};
 
+		self._configureRearWebcam() {
 			var webcamImageRear = $("#webcam_image_rear");
             var rearSrc = webcamImage.attr("src");
             if (rearSrc=== undefined || rearSrc.trim() == "") {
 				// TODO: Rear src
-                var newSrc = self.settings.plugins.webcam.streamUrl
+                var newSrc = self.settings.settings.plugins.webcam.rearStreamUrl
                 if (newSrc.lastIndexOf("?") > -1) {
                     newSrc += "&";
                 } else {
@@ -77,7 +84,7 @@ $(function() {
                 self.updateRotatorWidth();
                 webcamImage.attr("src", newSrc);
             }
-        };
+		};
 
         self.onTabChange = function (current, previous) {
             if (current == "#tab_plugin_webcam") {
