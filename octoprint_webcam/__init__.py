@@ -26,9 +26,11 @@ class WebcamPlugin(octoprint.plugin.StartupPlugin,
 		]
 
 	def get_assets(self):
-     return dict(
-         js=["js/webcam.js"]
-     )
+		return dict(
+			js=["js/webcam.js"],
+			#css=["css/webcam.css"],
+			#less=["less/webcam.less"]
+		)
 
 __plugin_name__ = "Webcam"
 __plugin_implementation__ = WebcamPlugin()
