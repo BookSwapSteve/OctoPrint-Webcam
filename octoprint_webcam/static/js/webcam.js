@@ -51,7 +51,7 @@ $(function() {
 			self._configureRearWebcam();
         };
 
-		self._configureMainWebcam() {
+		self._configureMainWebcam = function() {
 			var webcamImage = $("#webcam_image_main");
             var mainSrc = webcamImage.attr("src");
             if (mainSrc === undefined || mainSrc.trim() == "") {
@@ -68,7 +68,7 @@ $(function() {
             }
 		};
 
-		self._configureRearWebcam() {
+		self._configureRearWebcam= function() {
 			var webcamImageRear = $("#webcam_image_rear");
             var rearSrc = webcamImage.attr("src");
             if (rearSrc=== undefined || rearSrc.trim() == "") {
