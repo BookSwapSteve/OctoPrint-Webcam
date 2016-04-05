@@ -55,7 +55,7 @@ $(function() {
 			var webcamImage = $("#webcam_image_main");
             var mainSrc = webcamImage.attr("src");
             if (mainSrc === undefined || mainSrc.trim() == "") {
-                var newSrc = self.settings.settings.plugins.webcam.mainStreamUrl
+                var newSrc = self.settings.settings.plugins.webcam.mainStreamUrl();
                 if (newSrc.lastIndexOf("?") > -1) {
                     newSrc += "&";
                 } else {
@@ -73,7 +73,7 @@ $(function() {
             var rearSrc = webcamImage.attr("src");
             if (rearSrc=== undefined || rearSrc.trim() == "") {
 				// TODO: Rear src
-                var newSrc = self.settings.settings.plugins.webcam.rearStreamUrl
+                var newSrc = self.settings.settings.plugins.webcam.rearStreamUrl();
                 if (newSrc.lastIndexOf("?") > -1) {
                     newSrc += "&";
                 } else {
