@@ -1,15 +1,29 @@
 <form class="form-horizontal">
     <div class="control-group">
-        <label class="control-label">{{ _('Caption') }}</label>
+        <label class="control-label">{{ _('Webcam 1 Caption') }}</label>
         <div class="controls">
-            <input type="text" class="input-block-level" data-bind="value: settings.plugins.webcam.caption">
+            <input type="text" class="input-block-level" data-bind="value: settings.plugins.webcam.mainCaption">
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label">{{ _('URL') }}</label>
+        <label class="control-label">{{ _('Webcam 1 Stream Url') }}</label>
         <div class="controls">
-            <input type="text" class="input-block-level" data-bind="value: settings.plugins.webcam.streamUrl">
+            <input type="text" class="input-block-level" data-bind="value: settings.plugins.webcam.mainStreamUrl">
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">{{ _('Webcam 2 Caption') }}</label>
+        <div class="controls">
+            <input type="text" class="input-block-level" data-bind="value: settings.plugins.webcam.rearCaption">
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">{{ _('Webcam 2 Stream Url') }}</label>
+        <div class="controls">
+            <input type="text" class="input-block-level" data-bind="value: settings.plugins.webcam.rearStreamUrl">
         </div>
     </div>
 </form>

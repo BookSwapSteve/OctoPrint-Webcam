@@ -13,10 +13,9 @@ class WebcamPlugin(octoprint.plugin.StartupPlugin,
 	def get_settings_defaults(self):
 		return dict(
 			mainCaption="Print",
-			mainStreamUrl="/webcam/?action=stream",
+			mainStreamUrl="/webcam/?action=stream", 
 			rearCaption="Filament",
 			rearStreamUrl="/rearwebcam/?action=stream",
-			
 			)
 
 	def get_template_configs(self):
